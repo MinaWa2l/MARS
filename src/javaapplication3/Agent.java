@@ -11,7 +11,7 @@ public interface Agent {
 
     void setAvailable(boolean available);
 
-    boolean canPerform(Mission mission);
+    boolean canPerform(Missions mission);
 
     boolean canRespondTo(Emergency emergency);
 }

@@ -7,13 +7,13 @@ public class CommsDisruption implements EnvironmentCondition{
         return "Communication Disruption";
     }
     @Override
-    public EnvironmentCheck canStart(Mission mission){
+    public EnvironmentCheck canStart(Missions mission){
         return mission.requiresCommunication()?
             EnvironmentCheck.deny("Communication systems are distrupes, this mission requires communication.")
             :EnvironmentCheck.allow();
     }
     @Override
-    public EnvironmentCheck canContinue(Mission mission){
+    public EnvironmentCheck canContinue(Missions mission){
      return mission.requiresCommunication()?
             EnvironmentCheck.deny("Communication was lost during a communication-dependent mission.")
             :EnvironmentCheck.allow();
