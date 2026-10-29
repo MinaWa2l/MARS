@@ -14,11 +14,11 @@ public class NormalConditions implements EnvironmentCondition{
         return "Normal Condition";
     }
     @Override    
-    public EnvironmentCheck canStart(Mission mission){
+    public EnvironmentCheck canStart(Missions mission){
             return EnvironmentCheck.allow();
         }
     @Override
-    public EnvironmentCheck canContinue(Mission mission){
+    public EnvironmentCheck canContinue(Missions mission){
             return EnvironmentCheck.allow();
         }
     @Override

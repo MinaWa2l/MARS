@@ -11,13 +11,13 @@ public class DustStorm implements EnvironmentCondition{
         return "Dust Storm" ;
     }
      @Override    
-    public EnvironmentCheck canStart(Mission mission){
+    public EnvironmentCheck canStart(Missions mission){
             return mission.requiresSurfaceOperations()
                 ? EnvironmentCheck.deny(Reason)
                 : EnvironmentCheck.allow();
         }
     @Override
-    public EnvironmentCheck canContinue(Mission mission){
+    public EnvironmentCheck canContinue(Missions mission){
             return mission.requiresSurfaceOperations()
                 ? EnvironmentCheck.deny(Reason)
                 : EnvironmentCheck.allow();

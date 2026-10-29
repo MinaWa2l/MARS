@@ -45,7 +45,7 @@ public abstract class CrewMember implements Agent {
     }
 
     @Override
-    public abstract boolean canPerform(Mission mission);
+    public abstract boolean canPerform(Missions mission);
 
     @Override
     public abstract boolean canRespondTo(Emergency emergency);
