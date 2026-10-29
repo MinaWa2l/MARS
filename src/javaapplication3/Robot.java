@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author lenovo
  */
-abstract class Robot {
+abstract class Robot implements Agent {
    protected final String ID;
    protected final String Name;
    // FINAL BEC SINCE IT CREATED IT NEVER CHANGES
@@ -58,6 +58,6 @@ abstract class Robot {
         if (amount < 0) return;
         this.batteryLevel = (int) Math.min(100.0, this.batteryLevel + amount);
     }
-    public abstract boolean canPerformMission(String missionType);
+    public abstract boolean canPerform(Mission mission);
     public abstract boolean canHandleEmergency(String emergencyType);
 }
