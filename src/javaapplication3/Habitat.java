@@ -9,5 +9,7 @@ public class Habitat extends Facility{
         this.equipement=equipement;
        
     }
-    
+    public boolean hasEquipment() {
+    return equipement;
+}
 }

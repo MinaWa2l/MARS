@@ -9,5 +9,9 @@ public class StorageFacility extends Facility{
         this.equipement=equipement;
        
     }
+     
+     public boolean hasEquipment() {
+    return equipement;
+}
     
 }

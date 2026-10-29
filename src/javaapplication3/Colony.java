@@ -5,10 +5,21 @@ package javaapplication3;
 public class Colony {
     private Facility[] facilities;
     private int facilityCount;
+    private CrewMember[] crewArray;
+    private int crewCount;
     
-    public Colony(int maxSize){
-        facilities = new Facility[maxSize];
-        facilityCount=0;
+    private Robot[] robotArray;
+    private int robotCount;
+    
+    public Colony(int maxFacilities, int maxCrew, int maxRobots){
+        facilities = new Facility[maxFacilities];
+        facilityCount = 0;
+        
+        crewArray = new CrewMember[maxCrew];
+        crewCount = 0;
+        
+        robotArray = new Robot[maxRobots];
+        robotCount = 0;
     }
     
     public void addFacility(Facility facility){
@@ -16,6 +27,36 @@ public class Colony {
             facilities[facilityCount]=facility;
             facilityCount++;
         }
+    }
+    
+    public void addCrewMember(CrewMember cm) {
+        if (crewCount < crewArray.length) {
+            crewArray[crewCount] = cm;
+            crewCount++;
+        }
+    }
+    
+    public void addRobot(Robot r) {
+        if (robotCount < robotArray.length) {
+            robotArray[robotCount] = r;
+            robotCount++;
+        }
+    }
+    
+    public CrewMember[] getCrewArray() {
+        return crewArray;
+    }
+
+    public Robot[] getRobotArray() {
+        return robotArray;
+    }
+
+    public Facility[] getFacilities() {
+        return facilities;
+    }
+
+    public int getFacilityCount() {
+        return facilityCount;
     }
     
     
@@ -64,4 +105,29 @@ public boolean consumeResource(String type, int needed){
     }
     return true;
 }
+
+public boolean hasAvailableEquipment() {
+    for (int i = 0; i < facilityCount; i++) {
+        if (!facilities[i].isOperational()) continue;
+        
+        // Check Habitat
+        if (facilities[i] instanceof Habitat) {
+            Habitat h = (Habitat) facilities[i];
+            if (h.hasEquipment()) return true;
+        }
+        // Check Laboratory
+        else if (facilities[i] instanceof Laboratory) {
+            Laboratory lab = (Laboratory) facilities[i];
+            if (lab.hasEquipment()) return true;
+        }
+        // Check Storage Facility
+        else if (facilities[i] instanceof StorageFacility) {
+            StorageFacility storage = (StorageFacility) facilities[i];
+            if (storage.hasEquipment()) return true;
+        }
+    }
+    return false; // No equipment found in any operational facility
+}
+
+
 }

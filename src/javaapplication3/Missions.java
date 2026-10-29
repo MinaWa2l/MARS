@@ -1,5 +1,4 @@
 package javaapplication3;
-import java.util.List;
 
 enum MissionState {
     ASSIGNED, IN_PROGRESS, COMPLETED, FAILED
@@ -9,9 +8,8 @@ public abstract class Missions {
     private String missionId;
     private String description;
     private MissionState state;
-    private int durationUnits;//total time
-    private int elapsedUnits;//counter
-    //durationUnits and elapsedUnits work together to track time and manage how long a mission takes to complete
+    private int durationUnits; // total time
+    private int elapsedUnits; // counter
     
     public Missions(String missionId, String description, int durationUnits) {
         this.missionId = missionId;
@@ -20,12 +18,14 @@ public abstract class Missions {
         this.state = MissionState.ASSIGNED;
         this.elapsedUnits = 0;
     }
+
     public void startExecution() {
         if (state == MissionState.ASSIGNED) {
             state = MissionState.IN_PROGRESS;
             System.out.println("Mission [" + missionId + ": " + description + "] has started.");
         }
     }
+
     public void progressTime() {
         if (state == MissionState.IN_PROGRESS) {
             elapsedUnits++;
@@ -36,16 +36,24 @@ public abstract class Missions {
             }
         }
     }
+
     public void failMission(String reason) {
         this.state = MissionState.FAILED;
         System.out.println("FAILURE: Mission [" + missionId + "] FAILED. Reason: " + reason);
     }
+
     public String getMissionId() {
-        return missionId; }
+        return missionId;
+    }
+
     public String getDescription() {
-        return description; }
+        return description;
+    }
+
     public MissionState getState() {
-        return state; }
-    public abstract boolean validateCapabilities(List<CrewMember> crewMemberList, List<Robot> robotList);
-    //List<CrewMember>&List<Robot> containers have a collection of all the crew members and robots available in simulation
+        return state;
+    }
+
+    
+    public abstract boolean validateCapabilities(Colony colony);
 }
