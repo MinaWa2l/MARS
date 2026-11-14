@@ -25,7 +25,7 @@ public class ExplorationMission extends Missions{
     if (colony.getRobotArray() != null) {
             for (Robot r : colony.getRobotArray()) {
                 if (r == null) continue;
-                if (r instanceof ExplorationRover && r.isAvailable() && r.canPerform("Exploration")) {
+                if (r instanceof ExplorationRover && r.isAvailable() && r.canPerform(this)) {
                     hasRover = true;
                     break;
                 }

@@ -89,7 +89,7 @@ public class EmergencyManager   {
             }
 
             dispatch(robotResponder, emergency);
-            humanResponder.setAvailable(true);
+            robotResponder.setAvailable(true);
             return true;
     }
 

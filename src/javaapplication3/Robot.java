@@ -36,7 +36,18 @@ abstract class Robot implements Agent {
     public String getCurrentLocation() {
         return currentLocation; }
     public void setCurrentLocation(String currentLocation) {
-        this.currentLocation = currentLocation; }
+    this.currentLocation = currentLocation;
+    }
+
+    @Override
+    public String getLocation() {
+      return currentLocation;
+    }
+
+    @Override
+    public void setLocation(String location) {
+        this.currentLocation = location;
+    }
     public boolean isOperational() {
         return healthy && batteryLevel > 0.0 && availability;
     }

@@ -18,10 +18,10 @@ public class DustStorm implements EnvironmentCondition{
         }
     @Override
     public EnvironmentCheck canContinue(Missions mission){
-            return mission.requiresSurfaceOperations()
-                ? EnvironmentCheck.deny(Reason)
-                : EnvironmentCheck.allow();
-        }
+        return mission instanceof ExplorationMission
+            ? EnvironmentCheck.deny(Reason)
+            : EnvironmentCheck.allow();
+    }
     @Override
     public EnvironmentCheck canControl(Agent agent){
             return EnvironmentCheck.allow();

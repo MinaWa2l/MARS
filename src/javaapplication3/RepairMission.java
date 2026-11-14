@@ -25,7 +25,7 @@ public class RepairMission extends Missions{
     if (colony.getRobotArray() != null) {
             for (Robot r : colony.getRobotArray()) {
                 if (r == null) continue;
-               if (r instanceof RepairRobot && r.isAvailable() && r.canPerform("Repair")) {
+               if (r instanceof RepairRobot && r.isAvailable() && r.canPerform(this)) {
                     hasRover = true;
                     break;
                 }

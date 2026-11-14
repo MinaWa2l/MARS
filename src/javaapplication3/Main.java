@@ -89,7 +89,7 @@ public class Main {
         System.out.println("Initial Oxygen Lost. Remaining: " + habitatRes.getOxygen());
         
         // Identify responders
-        if (engineer1.canRespondTo(new OxygenLeak()) && repairBot1.canRespondTo(new OxygenLeak())) {
+        if (engineer1.canRespondTo(new OxygenLeak(habitatA, habitatA, 100)) && repairBot1.canRespondTo(new OxygenLeak(habitatA, habitatA, 100))) {
             System.out.println("Dispatching Responders: " + engineer1.getName() + " & " + repairBot1.getName());
             
             // Fix the leak by consuming spare parts

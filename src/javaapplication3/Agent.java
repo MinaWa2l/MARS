@@ -14,4 +14,8 @@ public interface Agent {
     boolean canPerform(Missions mission);
 
     boolean canRespondTo(Emergency emergency);
+    
+    
+    
+    
 }

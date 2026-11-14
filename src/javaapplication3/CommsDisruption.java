@@ -20,7 +20,7 @@ public class CommsDisruption implements EnvironmentCondition{
     }
     @Override
     public EnvironmentCheck canControl(Agent agent)
-    {return agent.requiresCommunicationLink()?
+    {return (agent instanceof Drone)?
             EnvironmentCheck.deny(agent.getName() + "cannot be controlled during a communication disprution.")
             :EnvironmentCheck.allow();
     }

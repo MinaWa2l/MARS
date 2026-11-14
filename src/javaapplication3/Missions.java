@@ -81,5 +81,9 @@ public abstract class Missions {
     }
 
     
+    public boolean requiresCommunication() {
+        return false;
+    }
+
     public abstract boolean validateCapabilities(Colony colony);
 }
