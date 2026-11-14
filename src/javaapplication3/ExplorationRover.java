@@ -11,7 +11,7 @@ public class ExplorationRover extends Robot {
         if (!isOperational()) {
             return false;
         }
-        return mission.isExplorationMission() || mission.isRescueMission();
+        return mission instanceof ExplorationMission || mission instanceof RescueMission;
         //this line returns true if the requested mission is either "Exploration" or "Rescue", and false for anything else
     }
     @Override
@@ -20,7 +20,7 @@ public class ExplorationRover extends Robot {
         if (!isOperational()) {
             return false;
         }
-       return emergency.isRoverBreakdown();
+       return emergency instanceof RoverBreakdown;
         //return true if the emergency type is a Rover Breakdown, and false for other emergencies
     }
 }

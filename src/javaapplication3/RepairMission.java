@@ -12,10 +12,10 @@ public class RepairMission extends Missions{
     boolean hasEngineer=false;
     boolean hasRover= false;
     
-    if (colony.getCrewArray() != null) {
-        for (CrewMember cm : colony.getCrewArray()) {
-            if (cm == null) continue;
-            if (cm instanceof Engineer && cm.isAvailable() && cm.canPerform(this)) {
+    if(colony.getCrewArray() != null){
+        for (CrewMember cm : colony.getCrewArray()){
+            if(cm == null) continue;
+            if(cm instanceof Engineer && cm.isAvailable() && cm.canPerform(this)){
                 hasEngineer = true;
                 break;
             }
