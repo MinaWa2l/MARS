@@ -5,8 +5,8 @@ package javaapplication3;
 
 public class Medical extends CrewMember {
 
-    public Medical(String name, String id, String location) {
-        super(name, id, location);
+    public Medical(String name, String id, String location,String[] skills) {
+        super(name, id, location,skills);
     }
 
     @Override

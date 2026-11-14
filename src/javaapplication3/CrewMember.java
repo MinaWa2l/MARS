@@ -7,11 +7,13 @@ public abstract class CrewMember implements Agent {
     protected String location;
     protected int fatigue;
     protected boolean available;
+    protected String[] skills;
 
-    public CrewMember(String name, String id, String location) {
+    public CrewMember(String name, String id, String location, String[] skills) {
         this.name = name;
         this.id = id;
         this.location = location;
+        this.skills = skills;
         this.health = 100;
         this.fatigue = 0;
         this.available = true;

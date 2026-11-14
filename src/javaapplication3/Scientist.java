@@ -1,8 +1,8 @@
 package javaapplication3;
 public class Scientist extends CrewMember {
 
-    public Scientist(String name, String id, String location) {
-        super(name, id, location);
+    public Scientist(String name, String id, String location,String[] skills) {
+        super(name, id, location,skills);
     }
 
     @Override

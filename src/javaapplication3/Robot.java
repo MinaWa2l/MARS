@@ -23,7 +23,7 @@ abstract class Robot implements Agent {
         return ID; }
     public String getName() {
         return Name; }
-    public double getBatteryLevel() {
+    public int getBatteryLevel() {
         return batteryLevel; }
     public boolean ishealthy() {
         return healthy; }
@@ -50,6 +50,8 @@ abstract class Robot implements Agent {
         if (amount < 0) return;
         this.batteryLevel = (int) Math.min(100.0, this.batteryLevel + amount);
     }
-    public abstract boolean canPerform(Mission mission);
-    public abstract boolean canHandleEmergency(String emergencyType);
+    @Override
+    public abstract boolean canPerform(Missions mission);
+    @Override
+    public abstract boolean canRespondTo(Emergency emergency);
 }

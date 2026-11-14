@@ -8,22 +8,18 @@ public class RepairRobot extends Robot {
     }
 
     @Override
-    public boolean canPerformMission(String missionType) {
+    public boolean canPerform(Missions mission) {
         if (!isOperational()) {
             return false;
         }
-        // repair robots handle maintenance and repair missions
-        return "Maintenance".equalsIgnoreCase(missionType) 
-            || "Repair".equalsIgnoreCase(missionType);
+        return mission.isRepairMission() || mission.isMaintenanceMission(); 
     }
 
     @Override
-    public boolean canHandleEmergency(String emergencyType) {
+    public boolean canRespondTo(Emergency emergency) {
         if (!isOperational()) {
             return false;
         }
-        // Repair robots used for structural emergencies like Oxygen leaks or fires
-        return "Oxygen Leak".equalsIgnoreCase(emergencyType) 
-            || "Fire".equalsIgnoreCase(emergencyType);
-    }   
+        return emergency.isOxygenLeak() || emergency.isFire();
+    }
 }

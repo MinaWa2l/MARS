@@ -26,21 +26,21 @@ public class Drone extends Robot {
     }
 
     @Override
-    public boolean canPerformMission(String missionType) {
+    public boolean canPerform(Missions mission) {
         if (!isOperational()) {
             return false;
         }
         //drones handle reconnaissance or aerial survey missions
-        return "Reconnaissance".equalsIgnoreCase(missionType) 
-            || "Aerial Survey".equalsIgnoreCase(missionType);
+        return mission.isReconnaissanceMission() || mission.isAerialSurveyMission();
+    }
     }
 
     @Override
-    public boolean canHandleEmergency(String emergencyType) {
+    public boolean canRespondTo(Emergency emergency) {
         if (!isOperational()) {
             return false;
         }
-        return "Reconnaissance".equalsIgnoreCase(emergencyType);
+        return emergency.isReconnaissanceEmergency();
     }
     
 }

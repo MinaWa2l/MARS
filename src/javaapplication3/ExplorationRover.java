@@ -6,21 +6,21 @@ public class ExplorationRover extends Robot {
         super(currentLocation, Name, ID);
     }
     @Override
-    public boolean canPerformMission(String missionType) {
+    public boolean canPerform(Missions mission) {
         //rover must be operational (healthy, has battery, available) to perform a mission
         if (!isOperational()) {
             return false;
         }
-        return "Exploration".equalsIgnoreCase(missionType) || "Rescue".equalsIgnoreCase(missionType);
+        return mission.isExplorationMission() || mission.isRescueMission();
         //this line returns true if the requested mission is either "Exploration" or "Rescue", and false for anything else
     }
     @Override
     //canHandleEmergency figure out which robots are qualified and available to respond to specific colony emergencies
-    public boolean canHandleEmergency(String emergencyType) {
+    public boolean canRespondTo(Emergency emergency) {
         if (!isOperational()) {
             return false;
         }
-        return "Rover Breakdown".equalsIgnoreCase(emergencyType);
+       return emergency.isRoverBreakdown();
         //return true if the emergency type is a Rover Breakdown, and false for other emergencies
     }
 }
