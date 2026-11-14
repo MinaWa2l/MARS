@@ -12,7 +12,7 @@ public class OxygenLeak extends Emergency{
     public OxygenLeak(Location location, Habitat affectedHabitat, double oxygenLoss){
      super(location);
      this.affectedHabitat = affectedHabitat;
-     this.oxygenloss=oxygenloss;
+     this.oxygenloss=oxygenLoss;
     }
     @Override
     public boolean isOxygenLeak(){
@@ -26,6 +26,6 @@ public class OxygenLeak extends Emergency{
     }
     @Override
     public String getDescription(){
-        return "oxygen Leak detected!";
+        return "Oxygen Leak detected in " + affectedHabitat.getLocation() + "!";
     }
 }
