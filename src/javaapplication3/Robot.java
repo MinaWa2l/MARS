@@ -1,15 +1,7 @@
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package javaapplication3;
 import java.util.Objects;
-/**
- *
- * @author lenovo
- */
+
 abstract class Robot implements Agent {
    protected final String ID;
    protected final String Name;
