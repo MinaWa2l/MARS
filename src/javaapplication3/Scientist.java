@@ -10,10 +10,19 @@ public class Scientist extends CrewMember {
         System.out.println("Conducting research.");
     }
 
+    
     @Override
-public boolean canPerform(Missions mission) {
-    return mission instanceof ExplorationMission || mission instanceof ResearchMission;
-}
+    public boolean canPerform(Missions mission) {
+        if (mission instanceof ExplorationMission) {
+            return hasSkill("Geology");
+        }
+
+        if (mission instanceof ResearchMission) {
+            return hasSkill("Research");
+        }
+
+        return false;
+    }
 
     @Override
     public boolean canRespondTo(Emergency emergency) {
