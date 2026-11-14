@@ -5,6 +5,7 @@ public abstract class Emergency {
 
     private Location location;
     private boolean resolved;
+    private String failureReason = "";
 
     public Emergency(Location location) {
         this.location = location;
@@ -21,6 +22,14 @@ public abstract class Emergency {
 
     public void setResolved(boolean resolved) {
         this.resolved = resolved;
+    }
+    
+    public void setFailureReason(String reason) {
+        failureReason = reason;
+    }
+
+    public String getFailureReason() {
+        return failureReason;
     }
 
     // Emergency identification methods

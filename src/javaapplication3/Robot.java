@@ -30,7 +30,8 @@ abstract class Robot implements Agent {
     public void sethealthy(boolean healthy) {
         this.healthy = healthy; }
     public boolean isAvailable() {
-        return availability; }
+    return availability && healthy && batteryLevel > 0;
+    }
     public void setAvailable(boolean availability) {
         this.availability = availability; }
     public String getCurrentLocation() {

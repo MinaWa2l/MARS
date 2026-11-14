@@ -38,7 +38,7 @@ public abstract class CrewMember implements Agent {
 
     @Override
     public boolean isAvailable() {
-        return available;
+        return available && health > 0 && fatigue < 100;
     }
 
     @Override
@@ -51,4 +51,22 @@ public abstract class CrewMember implements Agent {
 
     @Override
     public abstract boolean canRespondTo(Emergency emergency);
+    
+    public boolean hasSkill(String skill) {
+    if (skills == null) return false;
+
+    for (String s : skills) {
+        if (s != null && s.equalsIgnoreCase(skill)) {
+            return true;
+        }
+    }
+
+    return false;
+    }
+
+    public void heal(int amount) {
+        if (amount > 0) {
+            health = (int) Math.min(100, (long) health + amount);
+        }
+    }
 }

@@ -14,6 +14,8 @@ public class Main {
         habitatRes.addOxygen(1000);
         habitatRes.addBattery(50);
         habitatRes.addSpare(10);
+        habitatRes.addMedical(10);
+        habitatRes.addFuel(20);
         
         // Setup Facilities
         Habitat habitatA = new Habitat("Sector 1", 10, habitatRes, true);
@@ -24,7 +26,8 @@ public class Main {
         
         // Setup Crew (assuming you added the skills array to their constructors)
         String[] basicSkills = {"First Aid"};
-        Scientist scientist1 = new Scientist("Alice", "S1", "Sector 1", basicSkills);
+        String[] scientificSkills = {"Geology", "Research"};
+        Scientist scientist1 =new Scientist("Alice", "S1", "Sector 1", scientificSkills);
         Engineer engineer1 = new Engineer("Bob", "E1", "Sector 1", basicSkills);
         Medical medical1 = new Medical("Charlie", "M1", "Sector 1", basicSkills);
         

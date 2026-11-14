@@ -20,7 +20,7 @@ public class ExplorationRover extends Robot {
         if (!isOperational()) {
             return false;
         }
-       return emergency instanceof RoverBreakdown;
-        //return true if the emergency type is a Rover Breakdown, and false for other emergencies
+       return false;
+        
     }
 }

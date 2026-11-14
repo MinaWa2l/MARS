@@ -7,42 +7,35 @@ public class ExplorationMission extends Missions{
     public ExplorationMission(String missionId, String description, int durationUnits) {
         super(missionId, description, durationUnits);
     }
+
     @Override
     public boolean validateCapabilities(Colony colony) {
-    boolean hasScientist=false;
-    boolean hasRover= false;
-    
-    if(colony.getCrewArray()!=null){
-       for(CrewMember cm: colony.getCrewArray()){
-            if(cm==null)continue;
-            if(cm instanceof Scientist && cm.isAvailable()&& cm.canPerform(this)){
-                hasScientist=true;
-                break;
+        boolean hasScientist = false;
+        boolean hasRover = false;
+
+        for (int i = 0; i < getAssignedAgentCount(); i++) {
+            Agent agent = getAssignedAgent(i);
+
+            if (agent instanceof Scientist && agent.canPerform(this)) {
+                hasScientist = true;
+            }
+
+            if (agent instanceof ExplorationRover && agent.canPerform(this)) {
+                hasRover = true;
             }
         }
-    }
-    
-    if (colony.getRobotArray() != null) {
-            for (Robot r : colony.getRobotArray()) {
-                if (r == null) continue;
-                if (r instanceof ExplorationRover && r.isAvailable() && r.canPerform(this)) {
-                    hasRover = true;
-                    break;
-                }
-            }
-        }
-    
-    boolean hasEquipment = (colony.hasAvailableEquipment());
-    
-    if (!hasScientist || !hasRover || !hasEquipment) {
-            System.out.println("Validation Failed: Exploration mission requires an available Scientist, Exploration Rover and Equipment.");
+
+        boolean hasEquipment = colony.hasAvailableEquipment();
+        boolean hasBattery = colony.getTotalResource("battery") >= 10;
+
+        if (!hasScientist || !hasRover || !hasEquipment || !hasBattery) {
+            System.out.println(
+                "Exploration requires a scientist, rover, equipment and battery."
+            );
             return false;
         }
+
         return true;
-    
-    
-    
-    
     }
             
     

@@ -10,9 +10,10 @@ public class Resources {
         return oxygen;
     }
     public void addOxygen(int amount){
-        oxygen+=amount;
+        if(amount > 0) oxygen += amount;
     }
     public int removeOxygen(int amount){
+        if (amount <= 0) return 0;
         if(amount>=oxygen){
             int removed=oxygen;
             oxygen=0;
@@ -29,9 +30,10 @@ public class Resources {
         return water;
     }
     public void addWater(int amount){
-        water+=amount;
+        if(amount > 0) water += amount;
     }
     public int removeWater(int amount){
+        if (amount <= 0) return 0;
         if(amount>=water){
             int removed=water;
             water=0;
@@ -49,9 +51,10 @@ public class Resources {
         return food;
     }
     public void addFood(int amount){
-        food+=amount;
+        if(amount > 0) food += amount;
     }
     public int removeFood(int amount){
+        if (amount <= 0) return 0;
         if(amount>=food){
             int removed=food;
             food=0;
@@ -67,9 +70,10 @@ public class Resources {
         return fuel;
     }
     public void addFuel(int amount){
-        fuel += amount;
+        if(amount > 0) fuel += amount;
     }
     public int removeFuel(int amount){
+        if (amount <= 0) return 0;
         if(amount >= fuel){
             int removed = fuel;
             fuel = 0;
@@ -84,9 +88,10 @@ public class Resources {
         return battery;
     }
     public void addBattery(int amount){
-        battery += amount;
+       if(amount > 0) battery += amount;
     }
     public int removeBattery(int amount){
+        if (amount <= 0) return 0;
         if(amount >= battery){
             int removed = battery;
             battery = 0;
@@ -101,9 +106,10 @@ public class Resources {
         return medical;
     }
     public void addMedical(int amount){
-        medical += amount;
+        if(amount > 0) medical += amount;
     }
     public int removeMedical(int amount){
+        if (amount <= 0) return 0;
         if(amount >= medical){
             int removed = medical;
             medical = 0;
@@ -118,9 +124,10 @@ public class Resources {
         return spare;
     }
     public void addSpare(int amount){
-        spare += amount;
+        if(amount > 0) spare += amount;
     }
     public int removeSpare(int amount){
+        if (amount <= 0) return 0;
         if(amount >= spare){
             int removed = spare;
             spare = 0;

@@ -3,47 +3,71 @@ package javaapplication3;
 
 
 public class RepairMission extends Missions{
+    private Facility targetFacility;
+
+    public void setTargetFacility(Facility target) {
+        targetFacility = target;
+    }
     public RepairMission(String missionId, String description, int durationUnits) {
         super(missionId, description, durationUnits);
     }
     
     @Override
     public boolean validateCapabilities(Colony colony) {
-    boolean hasEngineer=false;
-    boolean hasRover= false;
-    
-    if(colony.getCrewArray() != null){
-        for (CrewMember cm : colony.getCrewArray()){
-            if(cm == null) continue;
-            if(cm instanceof Engineer && cm.isAvailable() && cm.canPerform(this)){
+        boolean hasEngineer = false;
+        boolean hasRepairRobot = false;
+
+        for (int i = 0; i < getAssignedAgentCount(); i++) {
+            Agent agent = getAssignedAgent(i);
+
+            if (agent instanceof Engineer && agent.canPerform(this)) {
                 hasEngineer = true;
-                break;
+            }
+
+            if (agent instanceof RepairRobot && agent.canPerform(this)) {
+                hasRepairRobot = true;
             }
         }
-    }
-    
-    if (colony.getRobotArray() != null) {
-            for (Robot r : colony.getRobotArray()) {
-                if (r == null) continue;
-               if (r instanceof RepairRobot && r.isAvailable() && r.canPerform(this)) {
-                    hasRover = true;
-                    break;
-                }
-            }
+
+        boolean hasSpare = colony.getTotalResource("spare") >= 2;
+        boolean hasBattery = colony.getTotalResource("battery") >= 5;
+
+        if (!hasEngineer || !hasRepairRobot || !hasSpare || !hasBattery) {
+            System.out.println(
+                "Repair requires an engineer, repair robot and resources."
+            );
+            return false;
         }
-    
-    boolean hasSpare = (colony.getTotalResource("spare")>=2);
-    
-    if (!hasEngineer || !hasRover || !hasSpare) {
-            System.out.println("Validation Failed: Repair mission requires an available Engineer, Repair Robot and Spare Parts.");
+        if (targetFacility == null) {
+            System.out.println("Repair mission requires a target facility.");
+            return false;
+        }
+
+        if (targetFacility.isOperational() &&
+            !(targetFacility instanceof Laboratory &&
+              !((Laboratory) targetFacility).hasEquipment())) {
+
+            System.out.println("Target facility does not need repair.");
             return false;
         }
         return true;
-    
-    
-    
-    
     }
     
+        @Override
+    public void progressTime() {
+        if (getState() != MissionState.IN_PROGRESS) return;
+
+        super.progressTime();
+
+        if (getState() == MissionState.COMPLETED) {
+            targetFacility.setOperational(true);
+
+            if (targetFacility instanceof Laboratory) {
+                ((Laboratory) targetFacility).equipement = true;
+            }
+
+            System.out.println("Target facility repaired.");
+        }
+    }
     
 }

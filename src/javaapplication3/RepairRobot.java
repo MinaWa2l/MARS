@@ -12,6 +12,6 @@ public class RepairRobot extends Robot {
     @Override
     public boolean canRespondTo(Emergency emergency) {
         if (!isOperational()) return false;
-        return emergency instanceof OxygenLeak || emergency instanceof Fire;
+        return emergency instanceof OxygenLeak || emergency instanceof Fire || emergency instanceof RoverBreakdown;
     }
 }
