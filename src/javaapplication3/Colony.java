@@ -11,6 +11,8 @@ public class Colony {
     private Robot[] robotArray;
     private int robotCount;
     
+    private Missions activeMission;
+    
     public Colony(int maxFacilities, int maxCrew, int maxRobots){
         facilities = new Facility[maxFacilities];
         facilityCount = 0;
@@ -58,7 +60,18 @@ public class Colony {
     public int getFacilityCount() {
         return facilityCount;
     }
-    
+    //only one is active:
+    public void submitMission(Missions mission) {
+        if (activeMission != null && (activeMission.getState() == MissionState.ASSIGNED || activeMission.getState() == MissionState.IN_PROGRESS)) {
+            mission.failMission("Colony can only have one active mission at a time.");
+            return;
+        }
+        if (mission.validateCapabilities(this)) {
+            activeMission = mission;
+        } else {
+            mission.failMission("Capabilities or resources not met.");
+        }
+    }
     
     public int getTotalResource(String type) {
     int total = 0;

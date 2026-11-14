@@ -11,10 +11,9 @@ public class Scientist extends CrewMember {
     }
 
     @Override
-    public boolean canPerform(Missions mission) {
-        return mission.isExplorationMission()
-                || mission.isResearchMission();
-    }
+public boolean canPerform(Missions mission) {
+    return mission instanceof ExplorationMission || mission instanceof ResearchMission;
+}
 
     @Override
     public boolean canRespondTo(Emergency emergency) {

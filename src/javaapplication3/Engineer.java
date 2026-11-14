@@ -14,10 +14,10 @@ public class Engineer extends CrewMember {
         System.out.println("Repairing equipment.");
     }
 
-    @Override
-    public boolean canPerform(Missions mission) {
-        return mission.isRepairMission();
-    }
+@Override
+public boolean canPerform(Missions mission) {
+    return mission instanceof RepairMission;
+}
 
     @Override
     public boolean canRespondTo(Emergency emergency) {

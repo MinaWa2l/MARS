@@ -72,7 +72,7 @@ public class EmergencyManager   {
             }
 
             dispatch(humanResponder, emergency);
-            humanResponder.setAvailable(true)
+            humanResponder.setAvailable(true);
             return true;
         }
 

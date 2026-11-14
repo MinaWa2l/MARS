@@ -15,9 +15,9 @@ public class Medical extends CrewMember {
     }
 
     @Override
-    public boolean canPerform(Missions mission) {
-        return mission.isRescueMission();
-    }
+public boolean canPerform(Missions mission) {
+    return mission instanceof RescueMission; 
+}
 
     @Override
     public boolean canRespondTo(Emergency emergency) {
