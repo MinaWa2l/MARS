@@ -1,4 +1,3 @@
-
 package javaapplication3;
 
 public class Drone extends Robot {
@@ -30,17 +29,19 @@ public class Drone extends Robot {
         if (!isOperational()) {
             return false;
         }
-        //drones handle reconnaissance or aerial survey missions
-        return mission.isReconnaissanceMission() || mission.isAerialSurveyMission();
+        // Drones handle exploration missions that might require aerial survey
+        return mission instanceof ExplorationMission; 
     }
-    }
+    
+    // THE EXTRA '}' THAT WAS HERE HAS BEEN REMOVED
 
     @Override
     public boolean canRespondTo(Emergency emergency) {
         if (!isOperational()) {
             return false;
         }
-        return emergency.isReconnaissanceEmergency();
+        // If you don't have a specific Reconnaissance emergency class, return false 
+        // or check for a relevant emergency type here.
+        return false; 
     }
-    
 }
